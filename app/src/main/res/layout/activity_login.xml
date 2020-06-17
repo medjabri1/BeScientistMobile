@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg_dark"
+    tools:context=".Activities.LoginActivity">
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Connectez vous ici"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#99FFFFFF"
+            android:layout_gravity="center"
+            android:textSize="17sp"
+            android:layout_marginBottom="70dp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/login_et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="10dp"
+            android:hint="Adresse mail"
+            android:inputType="textEmailAddress"
+            android:textColor="#FFF"
+            android:backgroundTint="@color/bgPrimary"
+            android:textColorHint="#33FFFFFF" />
+
+        <EditText
+            android:id="@+id/login_et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_edit_text"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawablePadding="10dp"
+            android:hint="Mot de passe"
+            android:inputType="textPassword"
+            android:textColor="#FFF"
+            android:backgroundTint="@color/bgPrimary"
+            android:textColorHint="#33FFFFFF" />
+
+        <Button
+            android:id="@+id/login_btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="S'inscrire"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/login_btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inscivez vous maintenant"
+            android:textColor="#AAFFFFFF"
+            android:layout_marginTop="30dp"
+            android:layout_margin="30dp"
+            android:padding="10dp"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

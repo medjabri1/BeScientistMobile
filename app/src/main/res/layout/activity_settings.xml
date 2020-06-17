@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.SettingsActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/bgPrimary"
+        android:padding="20dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_gravity="center_vertical"
+            android:onClick="backArrowClick"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_settings"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Account Settings layout -->
+            <LinearLayout
+                android:id="@+id/account_setting_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Compte"
+                    android:textSize="18sp"
+                    android:textAllCaps="true"
+                    android:textColor="#AA111144"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_person"
+                    android:drawableEnd="@drawable/ic_expand_more"
+                    android:padding="10dp"
+                    android:text="Informations"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:drawableTint="@color/bgPrimary"
+                    android:textColor="#AA111144"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="itemClicked"
+                    android:tag="data"
+                    style="?attr/selectableItemBackground"/>
+
+                <LinearLayout
+                    android:id="@+id/dataLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/gradient_round_bg_dark"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nom"
+                        android:textColor="#AA111144"/>
+
+                    <EditText
+                        android:id="@+id/settings_name_id"
+                        android:inputType="textPersonName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_edit_text"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#AA111144"
+                        android:textSize="14sp"
+                        android:lines="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="#AA111144"/>
+
+                    <EditText
+                        android:id="@+id/settings_email_id"
+                        android:inputType="textEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_edit_text"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#AA111144"
+                        android:textSize="14sp"
+                        android:lines="1" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Modifier"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@color/colorPrimaryLight"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:drawableEnd="@drawable/ic_expand_more"
+                    android:padding="10dp"
+                    android:text="Mot de passe"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:drawableTint="@color/bgPrimary"
+                    android:textColor="#AA111144"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="itemClicked"
+                    android:tag="password"
+                    style="?attr/selectableItemBackground"/>
+
+                <LinearLayout
+                    android:id="@+id/passwordLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:padding="20dp"
+                    android:background="@drawable/gradient_round_bg_dark"
+                    android:backgroundTint="@color/colorPrimaryLight"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ancien mot de passe"
+                        android:textColor="#AA111144"/>
+
+                    <EditText
+                        android:id="@+id/settings_old_password_id"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_edit_text"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#AA111144"
+                        android:textSize="14sp"
+                        android:lines="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nouveau mot de passe"
+                        android:textColor="#AA111144"/>
+
+                    <EditText
+                        android:id="@+id/settings_new_id"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_edit_text"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#AA111144"
+                        android:textSize="14sp"
+                        android:lines="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Confirmer nouveau"
+                        android:textColor="#AA111144"/>
+
+                    <EditText
+                        android:id="@+id/settings_confirm_password_id"
+                        android:inputType="textPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/custom_edit_text"
+                        android:padding="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#AA111144"
+                        android:textSize="14sp"
+                        android:lines="1"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Modifier"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- General settings layout -->
+            <LinearLayout
+                android:id="@+id/general_setting_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Générale"
+                    android:textSize="18sp"
+                    android:textAllCaps="true"
+                    android:textColor="#AA111144"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_settings"
+                    android:drawableEnd="@drawable/ic_expand_more"
+                    android:padding="10dp"
+                    android:text="Affichage"
+                    android:textAlignment="center"
+                    android:drawableTint="@color/bgPrimary"
+                    android:textStyle="bold"
+                    android:textColor="#AA111144"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="itemClicked"
+                    android:tag="display"
+                    style="?attr/selectableItemBackground"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@color/colorPrimaryLight"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/ic_assignment"
+                    android:drawableEnd="@drawable/ic_expand_more"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:text="A propos"
+                    android:textAlignment="center"
+                    android:drawableTint="@color/bgPrimary"
+                    android:textColor="#AA111144"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="itemClicked"
+                    android:tag="about"
+                    style="?attr/selectableItemBackground"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:hapticFeedbackEnabled="false"
+    android:foreground="?attr/selectableItemBackground"
+    android:onClick="chooseReviewerClick">
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:orientation="vertical"
+     android:padding="15dp">
+
+  <TextView
+      android:id="@+id/reviewer_name_id"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Reviewer name"
+      android:textColor="#BB220134"
+      android:textStyle="bold"
+      android:textSize="17sp"
+      android:layout_marginBottom="5dp"
+      android:textAllCaps="true"/>
+
+  <TextView
+      android:id="@+id/article_id_id"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:visibility="gone"/>
+
+  <TextView
+      android:id="@+id/reviewer_email_id"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="13sp"
+      android:textColor="#77000000"
+      android:text="reviewer@bescientist.com"
+      android:layout_marginBottom="5dp"/>
+
+  <TextView
+      android:id="@+id/reviewer_toreview_nbr_id"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="13sp"
+      android:textColor="#99000000"
+      android:text="En attente : 2"
+      android:layout_marginBottom="5dp"/>
+
+  <TextView
+      android:id="@+id/reviewer_id_id"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="end"
+      android:textColor="@color/bgPrimary"
+      android:textAllCaps="true"
+      android:text="10"/>
+
+ </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.EditorActivities.ArticleFinalDecisionActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/bgPrimary"
+        android:padding="20dp"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_gravity="center_vertical"
+            android:onClick="backArrowClick"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_final_decision"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/article_verified_title_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Article title here"
+                android:textColor="#BB220134"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/article_verified_domain_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informatics"
+                android:textSize="14sp"
+                android:textColor="#44000000"
+                android:textAllCaps="true"/>
+
+            <TextView
+                android:id="@+id/article_verified_author_name_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auteur : Mohammed JABRI"
+                android:textSize="14sp"
+                android:textColor="#55000000"
+                android:textAllCaps="true"
+                android:layout_marginBottom="40dp"/>
+
+            <TextView
+                android:id="@+id/article_verified_content_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contenu ici"
+                android:textSize="16sp"
+                android:textColor="#BB220134"
+                android:layout_marginBottom="40dp"/>
+
+            <TextView
+                android:id="@+id/article_verified_created_at_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Crée le : 2020-01-18 16:18:16"
+                android:textColor="#44000000"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/bgPrimaryLight"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observation"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="#44000000"/>
+
+            <TextView
+                android:id="@+id/article_verified_reviewer_name_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Réviseur : Mohammed JABRI"
+                android:textSize="14sp"
+                android:textColor="#55000000"
+                android:textAllCaps="true"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/article_verified_observation_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Observation ici"
+                android:textSize="16sp"
+                android:textColor="#BB220134"
+                android:layout_marginBottom="40dp"/>
+
+            <TextView
+                android:id="@+id/article_verified_reviewed_at_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Vérifié le : 2020-04-22 20:02:27"
+                android:textColor="#44000000"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/bgPrimaryLight"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Décision finale"
+                android:textSize="16sp"
+                android:textColor="#44000000"
+                android:layout_marginBottom="20dp"/>
+
+            <RadioGroup
+                android:id="@+id/radio_button_decision_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Accepter"
+                    android:textSize="16sp"
+                    android:textColor="#AA000000"
+                    android:tag="A"/>
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rejeter"
+                    android:textSize="16sp"
+                    android:textColor="#AA000000"
+                    android:tag="R"/>
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="A corriger"
+                    android:textSize="16sp"
+                    android:textColor="#AA000000"
+                    android:tag="C"/>
+
+            </RadioGroup>
+
+            <Button
+                android:onClick="confirmDecisionClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Envoyer decision"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

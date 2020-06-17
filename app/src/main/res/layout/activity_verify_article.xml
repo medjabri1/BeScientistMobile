@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ReviewerActivities.VerifyArticleActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/bgPrimary"
+        android:padding="20dp"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_gravity="center_vertical"
+            android:onClick="backArrowClick"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_verify_article"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/verify_article_title_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Article title here"
+                android:textColor="#BB220134"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/verify_article_domain_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informatics"
+                android:textSize="14sp"
+                android:textColor="#44000000"
+                android:textAllCaps="true"
+                android:layout_marginBottom="40dp"/>
+
+            <TextView
+                android:id="@+id/verify_article_content_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contenu ici"
+                android:textSize="16sp"
+                android:textColor="#BB220134"
+                android:layout_marginBottom="40dp"/>
+
+            <TextView
+                android:id="@+id/verify_article_sent_at_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="2020-17-18 16:18:16"
+                android:textColor="#44000000"
+                android:textSize="16sp"
+                android:layout_marginBottom="20dp"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/bgPrimaryLight"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="Observation"
+                android:textColor="@color/bgPrimary"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/verify_article_observation_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tapez votre observation"
+                android:textSize="16sp"
+                android:textColor="#BB220134"
+                android:gravity="top|start"
+                android:lines="10"
+                android:minLines="10"
+                android:maxLines="10"/>
+
+            <Button
+                android:id="@+id/send_observation_button_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="Envoyer l'observation"
+                android:background="@color/bgPrimary"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:layout_margin="20dp"
+                android:onClick="sendObservationClick"
+                style="?attr/selectableItemBackground"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

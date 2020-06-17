@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:hapticFeedbackEnabled="false"
+    android:foreground="?attr/selectableItemBackground"
+    android:onClick="myArticleClick">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:padding="15dp">
+
+    <TextView
+        android:id="@+id/article_title_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This is a title demo"
+        android:textColor="#BB220134"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        android:layout_marginBottom="5dp"
+        android:textAllCaps="true"/>
+
+    <TextView
+        android:id="@+id/article_id_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/article_created_at_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="#44000000"
+        android:text="2020-05-12 17:36:17"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/article_status_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:textColor="@color/bgPrimary"
+        android:textAllCaps="true"
+        android:text="Rejeté"/>
+
+  </LinearLayout>
+
+</androidx.cardview.widget.CardView>

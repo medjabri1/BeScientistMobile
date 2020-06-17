@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bescientist">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activities.SettingsActivity"></activity>
+        <activity android:name=".Activities.EditorActivities.ArticleFinalDecisionActivity" />
+        <activity android:name=".Activities.EditorActivities.ChooseReviewerActivity" />
+        <activity android:name=".Activities.EditorActivities.NewArticleActivity" />
+        <activity android:name=".Activities.EditorActivities.AcceptedArticlesActivity" />
+        <activity android:name=".Activities.EditorActivities.EditorReviewedArticlesActivity" />
+        <activity android:name=".Activities.EditorActivities.SentArticlesActivity" />
+        <activity android:name=".Activities.EditorActivities.NewArticlesActivity" />
+        <activity android:name=".Activities.ReviewerActivities.VerifyArticleActivity" />
+        <activity android:name=".Activities.ReviewerActivities.ArticlesToVerifyActivity" />
+        <activity android:name=".Activities.ReviewerActivities.ArticleVerifiedActivity" />
+        <activity android:name=".Activities.ReviewerActivities.ArticlesVerifiedActivity" />
+        <activity android:name=".Activities.AuthorActivities.CorrectArticleActivity" />
+        <activity android:name=".Activities.AuthorActivities.ArticlesToCorrectActivity" />
+        <activity android:name=".Activities.AuthorActivities.ArticleActivity" />
+        <activity android:name=".Activities.AuthorActivities.NewArticleActivity" />
+        <activity android:name=".Activities.AuthorActivities.MyArticlesActivity" />
+        <activity
+            android:name=".Activities.HomeActivity"
+            android:label="@string/title_activity_home" />
+        <activity android:name=".Activities.AdminActivity" />
+        <activity android:name=".Activities.RegisterActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activities.Settings.SettingsActivity" />
+    </application>
+
+</manifest>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:textAllCaps="true"
+      android:textSize="17sp"
+      android:textColor="@color/bgPrimaryDark"
+      android:text="@string/home_reviewer_title"/>
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:background="@color/colorPrimary"
+      android:layout_margin="10dp"/>
+
+  <GridLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:columnCount="2"
+      android:rowCount="2">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:layout_columnWeight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="menuClicked"
+        android:tag="reviewer_verify">
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@color/bgPrimary">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:layout_centerInParent="true">
+
+          <ImageView
+              android:layout_width="30dp"
+              android:layout_height="30dp"
+              android:src="@drawable/ic_restore"
+              android:contentDescription="icon"
+              android:layout_gravity="center"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Vérifier les articles"
+              android:textColor="@color/colorPrimary"
+              android:layout_gravity="center"
+              android:textSize="15sp"
+              android:textAlignment="center"/>
+
+          <TextView
+              android:id="@+id/verify_nbr_id"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:text="N/A"
+              android:textColor="@color/colorPrimary"
+              android:layout_marginTop="10dp"
+              android:textStyle="bold"/>
+
+
+        </LinearLayout>
+      </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:layout_columnWeight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="20dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:onClick="menuClicked"
+        android:tag="reviewer_verified">
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@color/bgPrimary">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:layout_centerInParent="true">
+
+          <ImageView
+              android:layout_width="30dp"
+              android:layout_height="30dp"
+              android:src="@drawable/ic_assignment"
+              android:contentDescription="icon"
+              android:layout_gravity="center"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Article vérifiés"
+              android:textColor="@color/colorPrimary"
+              android:layout_gravity="center"
+              android:textSize="15sp"
+              android:textAlignment="center"/>
+
+          <TextView
+              android:id="@+id/verified_nbr_id"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center"
+              android:text="N/A"
+              android:textColor="@color/colorPrimary"
+              android:layout_marginTop="10dp"
+              android:textStyle="bold"/>
+
+
+        </LinearLayout>
+      </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+  </GridLayout>
+
+</LinearLayout>
