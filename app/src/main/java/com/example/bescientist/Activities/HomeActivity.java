@@ -54,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                updateInfoBar();
                 getUserStats();
             }
         });

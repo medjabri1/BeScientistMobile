@@ -53,6 +53,7 @@ public class AdminActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                updateInfoBar();
                 getUserStats();
             }
         });

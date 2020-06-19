@@ -130,6 +130,7 @@
                         android:lines="1" />
 
                     <Button
+                        android:onClick="updateDataClick"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Modifier"/>
@@ -197,7 +198,7 @@
                         android:textColor="#AA111144"/>
 
                     <EditText
-                        android:id="@+id/settings_new_id"
+                        android:id="@+id/settings_new_password_id"
                         android:inputType="textPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -229,6 +230,7 @@
                         android:lines="1"/>
 
                     <Button
+                        android:onClick="updatePasswordClick"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Modifier"/>
