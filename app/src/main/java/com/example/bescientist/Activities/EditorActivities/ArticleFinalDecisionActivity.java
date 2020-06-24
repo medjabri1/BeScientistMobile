@@ -121,9 +121,8 @@ public class ArticleFinalDecisionActivity extends AppCompatActivity {
         ((Button) view.findViewById(R.id.dialog_confirmation_confirm_id)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 confirmDecision(article_id, reviewer_id, editor_id, decision);
-
+                alertDialog.dismiss();
             }
         });
 
