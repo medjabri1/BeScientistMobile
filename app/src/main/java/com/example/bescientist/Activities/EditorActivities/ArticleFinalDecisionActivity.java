@@ -112,20 +112,17 @@ public class ArticleFinalDecisionActivity extends AppCompatActivity {
         ((TextView) view.findViewById(R.id.dialog_confirmation_confirm_id)).setText("Confirmer");
 
         final AlertDialog alertDialog = builder.create();
-        final Context myContext = this;
-        final Button cancelBtn = view.findViewById(R.id.dialog_confirmation_close_id);
+
+        final int article_id = myArticleVerified.getId();
+        final int reviewer_id = myArticleVerified.getReviewer_id();
+        final int editor_id = PreferenceManager.getDefaultSharedPreferences(this).getInt("user_id", 0);
+        final String decision = radioButton.getTag().toString();
 
         ((Button) view.findViewById(R.id.dialog_confirmation_confirm_id)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button confirmBtn = (Button) v;
 
-                int article_id = myArticleVerified.getId();
-                int reviewer_id = myArticleVerified.getReviewer_id();
-                int editor_id = PreferenceManager.getDefaultSharedPreferences(myContext).getInt("user_id", 0);
-                String decision = radioButton.getTag().toString();
-
-                confirmDecision(article_id, reviewer_id, editor_id, decision, confirmBtn, cancelBtn, alertDialog);
+                confirmDecision(article_id, reviewer_id, editor_id, decision);
 
             }
         });
@@ -146,14 +143,16 @@ public class ArticleFinalDecisionActivity extends AppCompatActivity {
     }
 
     @SuppressLint("SetTextI18n")
-    private void confirmDecision(int article_id, int reviewer_id, int editor_id, String decision, Button confirmBtn, Button cancelBtn, final AlertDialog alertDialog) {
+    private void confirmDecision(int article_id, int reviewer_id, int editor_id, String decision) {
 
-        cancelBtn.setClickable(false);
-        cancelBtn.setTextColor(0x44777777);
-
-        confirmBtn.setText("En cours..");
-        confirmBtn.setClickable(false);
-        confirmBtn.setTextColor(0x44777777);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(this).inflate(R.layout.dialog_loading, null);
+        builder.setView(view);
+        builder.setCancelable(false);
+        final AlertDialog loadingDialog = builder.create();
+        loadingDialog.setCancelable(false);
+        Objects.requireNonNull(loadingDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(0));
+        loadingDialog.show();
 
         final Handler mHandler = new Handler(Looper.getMainLooper());
 
@@ -176,14 +175,7 @@ public class ArticleFinalDecisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                     showToast("Connection error");
-                    new Handler().postDelayed(
-                            new Runnable() {
-                                public void run() {
-                                    alertDialog.dismiss();
-                                    finish();
-                                }
-                            },
-                            1000);
+                    loadingDialog.dismiss();
                     }
                 });
             }
@@ -200,7 +192,7 @@ public class ArticleFinalDecisionActivity extends AppCompatActivity {
                         new Handler().postDelayed(
                             new Runnable() {
                                 public void run() {
-                                    alertDialog.dismiss();
+                                    loadingDialog.dismiss();
                                     finish();
                                 }
                             },
@@ -212,14 +204,7 @@ public class ArticleFinalDecisionActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             showToast("Server Error");
-                            new Handler().postDelayed(
-                                new Runnable() {
-                                    public void run() {
-                                        alertDialog.dismiss();
-                                        finish();
-                                    }
-                                },
-                            1000);
+                            loadingDialog.dismiss();
                         }
                     });
                 }

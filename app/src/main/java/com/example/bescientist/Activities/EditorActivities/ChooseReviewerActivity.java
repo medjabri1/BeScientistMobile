@@ -223,80 +223,8 @@ public class ChooseReviewerActivity extends AppCompatActivity {
         ((Button) view.findViewById(R.id.dialog_confirmation_confirm_id)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button btn = (Button) v;
-
-                btn.setText("En cours..");
-                btn.setClickable(false);
-                btn.setTextColor(0x44777777);
-
-                final Handler mHandler = new Handler(Looper.getMainLooper());
-
-                OkHttpClient client = new OkHttpClient();
-                String url = "https://be-scientist.000webhostapp.com/api/editor/sendToReviewer.php";
-
-                RequestBody formBody = new FormBody.Builder()
-                        .add("article_id", String.valueOf(article_id))
-                        .add("reviewer_id", reviewer_id)
-                        .build();
-
-                Request request = new Request.Builder().url(url).post(formBody).build();
-
-                client.newCall(request).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                showToast("Connection error");
-                                new Handler().postDelayed(
-                                        new Runnable() {
-                                            public void run() {
-                                                alertDialog.dismiss();
-                                                finish();
-                                            }
-                                        },
-                                        1000);
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        if(response.isSuccessful()) {
-
-                            final String myResponse = response.body().string();
-                            mHandler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    showToast(myResponse);
-                                    new Handler().postDelayed(
-                                            new Runnable() {
-                                                public void run() {
-                                                    alertDialog.dismiss();
-                                                    finish();
-                                                }
-                                            },
-                                            1000);
-                                }
-                            });
-                        } else {
-                            mHandler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    showToast("Server Error");
-                                    new Handler().postDelayed(
-                                            new Runnable() {
-                                                public void run() {
-                                                    alertDialog.dismiss();
-                                                    finish();
-                                                }
-                                            },
-                                            1000);
-                                }
-                            });
-                        }
-                    }
-                });
+                sendToReviewer(article_id, reviewer_id);
+                alertDialog.dismiss();
             }
         });
 
@@ -313,6 +241,73 @@ public class ChooseReviewerActivity extends AppCompatActivity {
 
         alertDialog.setCancelable(false);
         alertDialog.show();
+    }
+
+    public void sendToReviewer(int article_id, String reviewer_id) {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(this).inflate(R.layout.dialog_loading, null);
+        builder.setView(view);
+        builder.setCancelable(false);
+        final AlertDialog loadingDialog = builder.create();
+        loadingDialog.setCancelable(false);
+        Objects.requireNonNull(loadingDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(0));
+        loadingDialog.show();
+
+        final Handler mHandler = new Handler(Looper.getMainLooper());
+
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://be-scientist.000webhostapp.com/api/editor/sendToReviewer.php";
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("article_id", String.valueOf(article_id))
+                .add("reviewer_id", reviewer_id)
+                .build();
+
+        Request request = new Request.Builder().url(url).post(formBody).build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showToast("Connection error");
+                        loadingDialog.dismiss();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if(response.isSuccessful()) {
+
+                    final String myResponse = response.body().string();
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            showToast(myResponse);
+                            new Handler().postDelayed(
+                                    new Runnable() {
+                                        public void run() {
+                                            loadingDialog.dismiss();
+                                            finish();
+                                        }
+                                    },
+                                    1000);
+                        }
+                    });
+                } else {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            showToast("Server Error");
+                            loadingDialog.dismiss();
+                        }
+                    });
+                }
+            }
+        });
     }
 
     //Back arrow click

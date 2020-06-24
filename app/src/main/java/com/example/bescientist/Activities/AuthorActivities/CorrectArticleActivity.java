@@ -1,13 +1,20 @@
 package com.example.bescientist.Activities.AuthorActivities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bescientist.R;
@@ -66,13 +73,14 @@ public class CorrectArticleActivity extends AppCompatActivity {
     }
 
     //Correct btn click
+    @SuppressLint("SetTextI18n")
     public void correctArticleClick(View v) {
         EditText et_title = findViewById(R.id.correct_article_title_id);
         EditText et_content = findViewById(R.id.correct_article_content_id);
 
-        String id = getIntent().getStringExtra("id");
-        String title = et_title.getText().toString();
-        String content = et_content.getText().toString();
+        final String id = getIntent().getStringExtra("id");
+        final String title = et_title.getText().toString();
+        final String content = et_content.getText().toString();
 
         if(title.equals("") || content.equals("")) {
             showToast("Remplissez tout les champs s'il vous plait!");
@@ -84,12 +92,52 @@ public class CorrectArticleActivity extends AppCompatActivity {
             return;
         }
 
-        btnCorrectArticle.setClickable(false);
-        correctArticle(id, title, content);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(this).inflate(R.layout.dialog_confirmation, null);
+        builder.setView(view);
+
+        final AlertDialog alertDialog = builder.create();
+        final Context myContext = this;
+
+        ((TextView) view.findViewById(R.id.dialog_confirmation_title_id)).setText("Confirmer");
+        ((TextView) view.findViewById(R.id.dialog_confirmation_content_id)).setVisibility(View.GONE);
+
+        ((Button) view.findViewById(R.id.dialog_confirmation_confirm_id)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                correctArticle(id, title, content);
+                alertDialog.dismiss();
+
+            }
+        });
+
+        ((Button) view.findViewById(R.id.dialog_confirmation_close_id)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        if(alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        }
+
+        alertDialog.setCancelable(false);
+        alertDialog.show();
     }
 
     //Submit Article to api
     public void correctArticle(String id, String title, String content) {
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(this).inflate(R.layout.dialog_loading, null);
+        builder.setView(view);
+        builder.setCancelable(false);
+        final AlertDialog loadingDialog = builder.create();
+        loadingDialog.setCancelable(false);
+        Objects.requireNonNull(loadingDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(0));
+        loadingDialog.show();
 
         final Handler mHandler = new Handler(Looper.getMainLooper());
 
@@ -111,14 +159,7 @@ public class CorrectArticleActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         showToast("Connection error");
-                        btnCorrectArticle.setClickable(true);
-                        new Handler().postDelayed(
-                                new Runnable() {
-                                    public void run() {
-                                        finish();
-                                    }
-                                },
-                                1000);
+                        loadingDialog.dismiss();
                     }
                 });
             }
@@ -132,10 +173,10 @@ public class CorrectArticleActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             showToast(myResponse);
-                            btnCorrectArticle.setClickable(true);
                             new Handler().postDelayed(
                                     new Runnable() {
                                         public void run() {
+                                            loadingDialog.dismiss();
                                             finish();
                                         }
                                     },
@@ -147,14 +188,7 @@ public class CorrectArticleActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             showToast("Server Error");
-                            btnCorrectArticle.setClickable(true);
-                            new Handler().postDelayed(
-                                    new Runnable() {
-                                        public void run() {
-                                            finish();
-                                        }
-                                    },
-                                    1000);
+                            loadingDialog.dismiss();
                         }
                     });
                 }
