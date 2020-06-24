@@ -43,12 +43,12 @@ public class ArticlesToCorrectAdapter extends RecyclerView.Adapter<ArticlesToCor
         holder.tv_created_at.setText(mData.get(position).getCreated_at().substring(0, mData.get(position).getCreated_at().length() - 3));
         holder.tv_status.setText(mData.get(position).getRealStatus());
 
-        int animationDelay = position * 400;
+        int animationDelay = position * 200;
 
         holder.cardView.setAlpha(0);
         holder.cardView.setTranslationX(-300);
-        holder.cardView.animate().alpha(1f).setDuration(500).setStartDelay(animationDelay).start();
-        holder.cardView.animate().translationX(0).setDuration(600).setStartDelay(animationDelay).start();
+        holder.cardView.animate().alpha(1f).setDuration(300).setStartDelay(animationDelay).start();
+        holder.cardView.animate().translationX(0).setDuration(400).setStartDelay(animationDelay).start();
     }
 
     @Override

@@ -45,12 +45,12 @@ public class ArticlesToVerifyAdapter extends RecyclerView.Adapter<ArticlesToVeri
         holder.tv_domain.setText(mData.get(position).getDomain());
         holder.tv_sent_at.setText("Envoyé le : "+ mData.get(position).getCreated_at().substring(0, mData.get(position).getCreated_at().length() - 3));
 
-        int animationDelay = position * 400;
+        int animationDelay = position * 200;
 
         holder.cardView.setAlpha(0);
         holder.cardView.setTranslationX(-300);
-        holder.cardView.animate().alpha(1f).setDuration(500).setStartDelay(animationDelay).start();
-        holder.cardView.animate().translationX(0).setDuration(600).setStartDelay(animationDelay).start();
+        holder.cardView.animate().alpha(1f).setDuration(300).setStartDelay(animationDelay).start();
+        holder.cardView.animate().translationX(0).setDuration(400).setStartDelay(animationDelay).start();
     }
 
     @Override

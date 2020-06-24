@@ -45,12 +45,12 @@ public class ChooseReviewerAdapter extends RecyclerView.Adapter<ChooseReviewerAd
         holder.tv_email.setText(mData.get(position).getEmail());
         holder.tv_toreview_nbr.setText("En attente : "+ String.valueOf(mData.get(position).getToReviewNbr()));
 
-        int animationDelay = position * 400;
+        int animationDelay = position * 200;
 
         holder.cardView.setAlpha(0);
         holder.cardView.setTranslationX(-300);
-        holder.cardView.animate().alpha(1f).setDuration(500).setStartDelay(animationDelay).start();
-        holder.cardView.animate().translationX(0).setDuration(600).setStartDelay(animationDelay).start();
+        holder.cardView.animate().alpha(1f).setDuration(300).setStartDelay(animationDelay).start();
+        holder.cardView.animate().translationX(0).setDuration(400).setStartDelay(animationDelay).start();
     }
 
     @Override

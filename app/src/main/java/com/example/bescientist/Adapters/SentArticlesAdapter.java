@@ -47,12 +47,12 @@ public class SentArticlesAdapter extends RecyclerView.Adapter<SentArticlesAdapte
         holder.tv_author_name.setText("Auteur : "+ mData.get(position).getAuthor_name());
         holder.tv_reviewer_name.setText("Réviseur : "+ mData.get(position).getReviewer_name());
 
-        int animationDelay = position * 400;
+        int animationDelay = position * 200;
 
         holder.cardView.setAlpha(0);
         holder.cardView.setTranslationX(-300);
-        holder.cardView.animate().alpha(1f).setDuration(500).setStartDelay(animationDelay).start();
-        holder.cardView.animate().translationX(0).setDuration(600).setStartDelay(animationDelay).start();
+        holder.cardView.animate().alpha(1f).setDuration(300).setStartDelay(animationDelay).start();
+        holder.cardView.animate().translationX(0).setDuration(400).setStartDelay(animationDelay).start();
     }
 
     @Override
