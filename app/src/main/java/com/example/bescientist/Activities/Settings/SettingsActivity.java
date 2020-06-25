@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +111,12 @@ public class SettingsActivity extends AppCompatActivity {
             return;
         }
 
+        if(!Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()) {
+            //Invalid email
+            showToast("Adresse email entrée non valide");
+            return;
+        }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         @SuppressLint("InflateParams") View view = LayoutInflater.from(this).inflate(R.layout.dialog_confirmation, null);
         builder.setView(view);
@@ -123,10 +130,8 @@ public class SettingsActivity extends AppCompatActivity {
         ((Button) view.findViewById(R.id.dialog_confirmation_confirm_id)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 submitUpdateData(name, email);
                 alertDialog.dismiss();
-
             }
         });
 

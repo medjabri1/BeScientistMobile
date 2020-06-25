@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -61,6 +62,31 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            String email = et_email.getText().toString().trim();
+            String password = et_password.getText().toString();
+
+            if(email.length() < 1 || password.length() < 1) {
+                showToast("Remplissez tout les champs");
+                return;
+            }
+
+            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                showToast("Adresse email entrée non valide");
+                return;
+            }
+
+            submitLogin(email, password);
+
+            }
+        });
+    }
+
+    public void submitLogin(String email, String password) {
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         @SuppressLint("InflateParams") View view = LayoutInflater.from(this).inflate(R.layout.dialog_loading, null);
         builder.setView(view);
@@ -68,74 +94,56 @@ public class LoginActivity extends AppCompatActivity {
         final AlertDialog loadingDialog = builder.create();
         loadingDialog.setCancelable(false);
         Objects.requireNonNull(loadingDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(0));
+        loadingDialog.show();
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
+        final Handler mHandler = new Handler(Looper.getMainLooper());
+
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://be-scientist.000webhostapp.com/api/user/login.php";
+
+        RequestBody formBody = new FormBody.Builder()
+                .add("email", email)
+                .add("password", password)
+                .build();
+
+        Request request = new Request.Builder().url(url).post(formBody).build();
+
+        client.newCall(request).enqueue(new Callback() {
+
             @Override
-            public void onClick(View v) {
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        showToast("Connection error");
+                        loadingDialog.dismiss();
+                    }
+                });
+            }
 
-            if(et_email.getText().toString().length() < 1 || et_password.getText().toString().length() < 1) return;
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if(response.isSuccessful()) {
+                    final String myResponse = response.body().string();
 
-            loadingDialog.show();
-
-            btn_login.setClickable(false);
-            btn_login.setText("Connexion..");
-            btn_login.setTextColor(0x55777777);
-
-            final Handler mHandler = new Handler(Looper.getMainLooper());
-
-            OkHttpClient client = new OkHttpClient();
-            String url = "https://be-scientist.000webhostapp.com/api/user/login.php";
-
-            RequestBody formBody = new FormBody.Builder()
-                    .add("email", et_email.getText().toString())
-                    .add("password", et_password.getText().toString())
-                    .build();
-
-            Request request = new Request.Builder().url(url).post(formBody).build();
-
-            client.newCall(request).enqueue(new Callback() {
-
-                @Override
-                public void onFailure(@NotNull Call call, @NotNull IOException e) {
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            showToast("Connection error");
-                            btn_login.setClickable(true);
-                            btn_login.setText("Se connectez");
-                            btn_login.setTextColor(0xFFFFFFFF);
-                            loadingDialog.dismiss();
+                            if(myResponse.equalsIgnoreCase("logged in")) {
+                                //Logged in
+                                showToast(myResponse);
+                                insertUserData(et_email.getText().toString());
+                            } else {
+                                //Not logged in
+                                showToast(myResponse);
+                                loadingDialog.dismiss();
+                            }
                         }
                     });
                 }
-
-                @Override
-                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                    if(response.isSuccessful()) {
-                        final String myResponse = response.body().string();
-
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if(myResponse.equalsIgnoreCase("logged in")) {
-                                    //Logged in
-                                    showToast(myResponse);
-                                    insertUserData(et_email.getText().toString());
-                                } else {
-                                    //Not logged in
-                                    showToast(myResponse);
-                                    btn_login.setClickable(true);
-                                    btn_login.setText("Se connectez");
-                                    btn_login.setTextColor(0xFFFFFFFF);
-                                    loadingDialog.dismiss();
-                                }
-                            }
-                        });
-                    }
-                }
-            });
             }
         });
+
     }
 
     public void showToast (String message){
