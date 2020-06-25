@@ -354,6 +354,7 @@ public class SettingsActivity extends AppCompatActivity {
         switch (tag) {
             case "data": layout = (LinearLayout) findViewById(R.id.dataLayout); break;
             case "password": layout = (LinearLayout) findViewById(R.id.passwordLayout); break;
+            case "about": layout = (LinearLayout) findViewById(R.id.aboutLayout); break;
 
             default: return;
         }

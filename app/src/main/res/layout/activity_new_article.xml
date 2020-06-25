@@ -65,7 +65,9 @@
             android:layout_height="wrap_content"
             android:hint="Titre"
             android:textSize="15sp"
-            android:textColor="@color/bgPrimaryDark"/>
+            android:background="@drawable/custom_edit_text"
+            android:padding="10dp"
+            android:textColor="#AA111144"/>
 
       </LinearLayout>
 
@@ -89,7 +91,9 @@
             android:layout_height="wrap_content"
             android:hint="Domaine"
             android:textSize="15sp"
-            android:textColor="@color/bgPrimaryDark"/>
+            android:background="@drawable/custom_edit_text"
+            android:padding="10dp"
+            android:textColor="#AA111144"/>
 
       </LinearLayout>
 
@@ -117,7 +121,9 @@
             android:minLines="10"
             android:maxLines="10"
             android:gravity="top|start"
-            android:textColor="@color/bgPrimaryDark"/>
+            android:background="@drawable/custom_edit_text"
+            android:padding="10dp"
+            android:textColor="#AA111144"/>
 
       </LinearLayout>
 

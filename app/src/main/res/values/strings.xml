@@ -38,4 +38,9 @@
   <string name="title_accepted_articles">Les articles acceptés</string>
   <string name="title_settings">Paramètres</string>
 
+  <!-- Texts -->
+  <string name="text_about">
+    Cette application déstinées aux utilisateurs du site web BeScientist pour faciliter et effectuer les mêmes tâches depuis votre smatrphone ou tablette.
+  </string>
+
 </resources>
